@@ -1,0 +1,314 @@
+/*A Navbar struktúrája fix, de szeretném ha a linkekre történő kattintással
+ a weboldal szépen animáltan gördüljön:*/
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Montserrat", sans-serif;
+}
+
+
+/*A NAVBAR háttérszíne a média változása alapján
+576 pixel alatt egy sötét narancssárga hátteret ad:*/
+
+@media (max-width: 575.98px) {
+	.navbar{	
+        background-color : #ad2d06;             
+    }
+}
+
+/*nagy képernyőn ad egy halvány sötét hátteret a Navbar-nak
+ha azon rajta van a .scrolled class. */
+
+@media (min-width: 576px) {
+	.navbar.scrolled{
+		background-color : rgba(134, 12, 12, 0.9);              
+	}
+}
+
+
+section{
+    width:      100%;
+    min-height: 100vh;
+
+    /* A section minden tartalma legyen középre igazítva 
+    vízszintesen és függőlegesen is. Ezért:*/
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+}
+
+#sec1{
+    background: linear-gradient(312deg, #5c291a 0%, #e0663e 100%);
+    color: lime;
+}
+
+#sec1 h1 {
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);       
+    font-size:     4em; 
+    line-height:   1em;
+    margin-bottom: 30px;
+}
+
+#sec1 h4 span{
+    opacity:       0.8;
+}
+
+.sec1pics .img1 img{
+    max-width: 700px;
+}
+
+.sec1pics .img{
+    /* A kép abszolút elhelyezkedésű, 
+    nem viszonyul csak a képernyőhöz: */
+    position: absolute;
+    top:      0px;
+    left:     0px;
+    width:    100%;
+    height:   100%;
+
+    /* A Mars képe legyen a szekció középére igazítva 
+    vízszintesen és függőlegesen is. Ezért:*/
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+}
+
+.container{
+    /*A szöveg (container) jöjjön a kép elé
+    mert enélkül eltakarja*/
+    z-index: 1;
+}
+
+section{
+    /* Ahhoz hogy a képek ne tolják szét az oldalt:  */
+    /*A section pozíciója legyen relative*/
+    position: relative;
+    /*kilógó tartalma legyen eltűntetve*/
+    overflow: hidden;
+}
+
+/*A Mars képét animáljuk egy KEYFRAME-el, 
+ami 20px-el mozgatja fel-le a képet: */
+
+@keyframes pic1_anime {
+  0% {transform: translate(0px, 0px) }
+  100% {transform: translate(0px, 20px) }
+}
+
+/* A képhez beállítjuk a fenti animációt: */
+
+.sec1pics .img1{
+    animation: pic1_anime 3s 0s infinite alternate-reverse ease-in-out;
+    /*Az animáció 3s hosszú 0s késleltetéssel a 
+    végtelenségig fut oda-vissza módon 
+    Az elejen és a vége finoman lassít*/
+}
+
+/* ----- Az űrhajó képe -------- */
+
+.sec1pics .img2 img{
+    width: 80vh;
+}
+
+/*A hajó képének animálása: bal-lent-ről fél-fél képernyő eltolásból indít
+ és a képernyő közepén nullára kicsinyítéssel végződik.*/
+
+@keyframes pic2_anime {
+    0% {transform: translate(-40vw, 40vh) scale(1);}
+    100% {transform: translate(10vw, -10vh) scale(0);}
+}
+
+/* A képhez beállítjuk a fenti animációt: */
+
+.sec1pics .img2{
+    animation: pic2_anime 10s forwards ease-in-out;
+     /*Az animáció 10s hosszú, 
+  az animáció utolsó értéke az animáció után is maradjon érvényben (forwards)
+  az elejen és a vége finoman lassítva legyen:*/
+}
+
+  /*Felső szalag*/
+.szalag{
+    background-color: #d75d35;
+    overflow:         hidden;
+    color:            white;
+    text-align:       center;
+}
+
+.szalag .row{
+    padding:          30px 10px;
+}
+
+.szalag .box i{
+    font-size:        30px;
+}
+
+.szalag .box .text1{
+    margin-top:       10px;
+    text-transform:   uppercase;
+    letter-spacing:   1px;
+}
+
+.szalag .box .text2{
+    opacity:          0.7;
+}
+
+  /*Felső szalag vége*/
+
+.szalag.szamlalo .box{
+    width:           140px;
+    height:          140px;
+    border:          solid 2px;
+    border-radius:   50%;
+    border-color:    rgba(255, 255, 255, 0.3);
+}
+
+.szalag.szamlalo .text1{
+    font-size:       3rem;
+}
+
+
+/* Bemutató rész*/
+
+h2{
+    position:        relative;
+    font-size:       30px;
+    line-height:     2em;
+    margin-bottom:   50px;    
+}
+
+/*A <h2> cím alatti aláhúzást a h2::before szelektor segítségével 
+állítjuk be Ez egy olyan elem, melye a h2 elemhez kapcsolódva jön létre
+és ugyanúgy formázható CSS-el. A content tulajdonsággal jön létre.
+Egy abszolút elhelyezkedésű elem jön létr, melynek fix a hossza 
+és az alsó szegélye van beállítva. 
+Ahhoz hogy megjelenjen a <h2> címsor pozicionálásának relatívnak kell lennie: */
+
+h2::before{
+    content:        "";
+    border-bottom:  solid 5px #e0663e;
+    position:       absolute;
+    left:           0px;
+    bottom:         0px;
+    width:          90px;
+    text-align:     center;
+}
+
+.bemutato li{
+    font-size:      1.2em;
+    line-height:    2em;
+    list-style:     none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight:    bold;
+}
+
+.bemutato i{
+    font-size:      180px;
+    line-height:    180px;
+    color:         #e0663e;
+}
+
+.bemutato .image{ 
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    height:          100%;
+    margin-top:     -10px;
+}
+/* Bemutató rész* vége/
+
+/*A jelenkező rész */
+
+.section_bg{
+    position:         absolute;
+    width:            100%;
+    height:           100%;
+    background-image: url(img/mars_bg);
+    background-size:  cover;
+    /*A háttérkép a képernyőhöz van csatolva, nem mozog görgetésre.*/
+    background-attachment: fixed;
+    opacity:               0.3;
+}
+
+.mx-auto{
+    width:                60%;     
+    justify-content:      center;
+    align-items:          center;   
+}
+
+.btn-mars{
+    background-color:    #e0663e;
+    color:               white;
+}
+
+.btn-mars:hover{
+    background-color:    #d4542a;
+    color:               lime;
+}
+
+.form-control{
+    height:              50px;
+}
+/*A jelenkező rész vége*/
+
+/* A képek */
+.pic{
+    border:             solid 1px #d0d3d0 ;
+    margin:             4px;
+    padding:            2px;
+    box-shadow:         3px 4px 5px #888888;
+}
+
+
+/*A footer*/
+.sec1pics .img1.small img{
+    max-width:          300px;
+}
+
+footer{
+    min-height:         50vh;
+    position:           relative;
+    overflow:           hidden;
+    background:        #5c291a;
+    background:         linear-gradient(0deg, #5c291a 0%, #e0663e 100%);   
+    display:            flex; 
+    align-items:        center;    
+}
+
+footer ul{
+    margin:             70px 0px;
+}
+
+footer ul li {
+    list-style:         none;    
+}
+
+.nav-link{
+    color:             rgba(255, 255, 255, 0.8);
+}
+
+.nav-link:hover{
+    color:             rgba(204, 255, 51, 0.8);
+}
+
+footer .bottom {
+    background-color:  rgba(0, 0, 0, 0.3);
+    position:          absolute;
+    bottom:            0px;
+    left:              0px;
+    width:             100%;
+    text-align:        center;
+    padding:           15px;
+    font-size:         0.8em;
+    z-index:           10;
+}
+
+footer .bottom span{
+    color:             rgba(204, 255, 51, 0.8);
+    margin:            5px;
+}
+  
